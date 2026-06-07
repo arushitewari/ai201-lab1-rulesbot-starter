@@ -116,11 +116,11 @@ handle these cases better, at the cost of more implementation complexity.
 **Actual chunk count produced across all 8 rule books:**
 
 ```
-[your answer here]
+149
 ```
 
 **One thing that surprised you or didn't match your expectations:**
 
 ```
-[your answer here]
+The number of chunks is greater than expected because an overlap of 50 characters would advance the window by 250 characters instead of 300, producing approx 20% more chunks than would be expected by a total chars/chunk_size
 ```
