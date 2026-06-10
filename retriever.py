@@ -1,5 +1,6 @@
 import chromadb
 from chromadb.utils import embedding_functions
+from torch import chunk
 from config import CHROMA_COLLECTION, CHROMA_PATH, EMBEDDING_MODEL, N_RESULTS
 
 # Embedding function and ChromaDB client are initialized once at module load.
@@ -69,4 +70,20 @@ def retrieve(query, n_results=N_RESULTS):
         return []
 
     # Your implementation here.
-    return []
+    results = _collection.query(
+        query_texts=[query],
+        n_results=n_results
+    )
+    print("DEBUG:", results["documents"][0])
+    chunks = []
+    for i in range(len(results["documents"][0])):
+        chunks.append( {
+            "text": results["documents"][0][i],
+            "game": results["metadatas"][0][i]["game"],
+            "distance": results["distances"][0][i],
+        })
+    for chunk in chunks:
+        print(f"[{chunk['game']}] (dist: {chunk['distance']:.3f}) {chunk['text'][:80]}...")
+        
+    return chunks 
+

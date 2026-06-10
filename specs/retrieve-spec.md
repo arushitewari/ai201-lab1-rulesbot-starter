@@ -55,7 +55,7 @@ Results should be ordered from most to least relevant (lowest to highest distanc
 *Sketch out what one item in your return list looks like as a concrete example. Where does each field come from in the query results?*
 
 ```
-[your answer here]
+{"text": "When a 7 is rolled, no one collects resources", "game": "Catan", "distance":"0.142"}
 ```
 
 ---
@@ -65,7 +65,7 @@ Results should be ordered from most to least relevant (lowest to highest distanc
 *`_collection.query()` returns nested lists. Describe what index you need to access to get the actual list of results for a single query, and why the nesting exists.*
 
 ```
-[your answer here]
+The nesting exists because _collections.query() can handle multiple queries at a time. To access the actual list of results, which I believe means text, we can use results["documents"][0] or to get a particular text: results["documents"][0][i]. 
 ```
 
 ---
@@ -75,7 +75,7 @@ Results should be ordered from most to least relevant (lowest to highest distanc
 *Will you filter out results above a certain distance score, or return all `n_results` regardless of how relevant they are? What are the tradeoffs of each approach?*
 
 ```
-[your answer here]
+If we return all n_results without filtering, we might risk getting noise and subsequently the LLM hallucinating but if we do decide to filter out based on distance, we might risk returning an empty list even if good matches are above a certain threshold and the LLM might return an incomplete answer
 ```
 
 ---
@@ -85,7 +85,7 @@ Results should be ordered from most to least relevant (lowest to highest distanc
 *How does your implementation behave when: (a) the collection is empty, (b) the query matches no chunks well, (c) the query matches chunks from multiple games?*
 
 ```
-[your answer here]
+Implementaion not working ,need to complete generator.py seems to have some error
 ```
 
 ---
